@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/order")
 public class OrderController {
     @PostMapping
-    private String createOrder(@RequestBody OrderRequest orderRequest){
-
+    public String createOrder(@RequestBody OrderRequest orderRequest){
+    return "order placed success";
     };
 }

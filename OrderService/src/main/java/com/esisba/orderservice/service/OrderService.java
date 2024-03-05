@@ -4,6 +4,8 @@ import com.esisba.orderservice.Entity.Order;
 import com.esisba.orderservice.Entity.orderLineItems;
 import com.esisba.orderservice.dto.OrderRequest;
 import com.esisba.orderservice.dto.orderLineItemsDto;
+import com.esisba.orderservice.repository.OrderRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
@@ -14,9 +16,11 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 
 @Service
-
+@RequiredArgsConstructor
 public class OrderService {
-    public void placeOrder(OrderRequest orderRequest) {
+    private final OrderRepository orderRepository;
+
+    public static void placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
 
@@ -25,6 +29,7 @@ public class OrderService {
                 .toList();
 
         order.setOrderLineItemsList(orderLineItemsList);
+        orderRepository.save(order);
     }
 
     private orderLineItems mapToItemsDto(orderLineItemsDto orderLineItemsDto) {

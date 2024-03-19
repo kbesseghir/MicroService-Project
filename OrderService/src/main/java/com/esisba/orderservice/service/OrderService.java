@@ -20,7 +20,7 @@ import static java.util.stream.Collectors.toList;
 public class OrderService {
     private final OrderRepository orderRepository;
 
-    public static void placeOrder(OrderRequest orderRequest) {
+    public  void placeOrder(OrderRequest orderRequest) {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
 
